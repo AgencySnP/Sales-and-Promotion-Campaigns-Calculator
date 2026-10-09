@@ -1,0 +1,932 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>🤝 Recruiter Bonus</title>
+
+    <style>
+
+        *{
+            box-sizing:border-box;
+        }
+
+        body{
+            font-family:Arial, sans-serif;
+            background:#F5F5F5;
+            margin:0;
+            padding:30px;
+            color:#1F2937;
+        }
+
+        .pageContainer{
+            max-width:1200px;
+            margin:0 auto;
+        }
+
+        .backBtn{
+            display:inline-block;
+            background:#F97316;
+            color:white;
+            padding:14px 24px;
+            border:none;
+            border-radius:10px;
+            cursor:pointer;
+            font-size:17px;
+            font-weight:bold;
+            margin-bottom:24px;
+            transition:0.2s;
+        }
+
+        .backBtn:hover{
+            background:#EA580C;
+            transform:translateY(-2px);
+        }
+
+        .header{
+            background:#F97316;
+            color:white;
+            padding:46px 25px;
+            border-radius:16px;
+            text-align:center;
+            margin-bottom:35px;
+        }
+
+        .header h1{
+            margin:0 0 18px 0;
+            font-size:38px;
+        }
+
+        .header p{
+            margin:0;
+            font-size:20px;
+            font-weight:500;
+        }
+
+        .quantitySection{
+            width:100%;
+            max-width:520px;
+            margin:0 auto 30px auto;
+            text-align:center;
+        }
+
+        .inputLabel{
+            display:block;
+            margin-bottom:12px;
+            color:#F97316;
+            font-size:18px;
+            font-weight:bold;
+        }
+
+        .quantityInput{
+            display:block;
+            width:100%;
+            min-height:70px;
+            padding:16px 20px;
+            font-size:26px;
+            font-weight:bold;
+            text-align:center;
+            background:white;
+            color:#111827;
+            border:3px solid #F97316;
+            border-radius:14px;
+            outline:none;
+        }
+
+        .quantityInput:focus{
+            border-color:#FFB81C;
+            box-shadow:0 0 0 4px rgba(255,184,28,0.25);
+        }
+
+        .generateBtn{
+            display:block;
+            width:100%;
+            min-height:70px;
+            margin-top:16px;
+            padding:16px 20px;
+            font-size:20px;
+            font-weight:bold;
+            border:none;
+            border-radius:14px;
+            background:#F97316;
+            color:white;
+            cursor:pointer;
+            transition:0.2s;
+        }
+
+        .generateBtn:hover{
+            background:#EA580C;
+            transform:translateY(-2px);
+            box-shadow:0 6px 14px rgba(0,0,0,0.15);
+        }
+
+        .rookieInputs{
+            display:grid;
+            grid-template-columns:
+                repeat(auto-fit, minmax(280px, 1fr));
+            gap:20px;
+            margin-top:30px;
+        }
+
+        .rookieInputCard{
+            background:white;
+            padding:24px;
+            border-radius:16px;
+            box-shadow:0 4px 14px rgba(0,0,0,0.1);
+            border-top:6px solid #F97316;
+        }
+
+        .rookieTitle{
+            color:#F97316;
+            font-size:20px;
+            font-weight:bold;
+            margin-bottom:15px;
+            text-align:center;
+        }
+
+        .fypInput{
+            display:block;
+            width:100%;
+            min-height:68px;
+            padding:16px 20px;
+            font-size:24px;
+            font-weight:bold;
+            text-align:center;
+            background:white;
+            color:#111827;
+            border:3px solid #F97316;
+            border-radius:12px;
+            outline:none;
+        }
+
+        .fypInput:focus{
+            border-color:#FFB81C;
+            box-shadow:0 0 0 4px rgba(255,184,28,0.25);
+        }
+
+        .fypInput::placeholder{
+            color:#9CA3AF;
+            font-size:17px;
+            font-weight:normal;
+        }
+
+        .calculateSection{
+            width:100%;
+            max-width:520px;
+            margin:32px auto;
+        }
+
+        .calculateBtn{
+            display:block;
+            width:100%;
+            min-height:74px;
+            padding:18px 22px;
+            font-size:22px;
+            font-weight:bold;
+            border:none;
+            border-radius:14px;
+            background:#FFB81C;
+            color:#003B2F;
+            cursor:pointer;
+            transition:0.2s;
+        }
+
+        .calculateBtn:hover{
+            background:#FFC94D;
+            transform:translateY(-2px);
+            box-shadow:0 6px 14px rgba(0,0,0,0.15);
+        }
+
+        .calculateBtn:active{
+            transform:translateY(0);
+        }
+
+        .errorMessage{
+            color:#B91C1C;
+            font-size:16px;
+            font-weight:bold;
+            margin-top:14px;
+            min-height:20px;
+            text-align:center;
+        }
+
+        .results{
+            display:grid;
+            gap:20px;
+        }
+
+        .resultCard{
+            background:white;
+            padding:26px 30px;
+            border-radius:16px;
+            box-shadow:0 4px 14px rgba(0,0,0,0.1);
+            border-left:7px solid #F97316;
+        }
+
+        .resultHeader{
+            display:flex;
+            justify-content:space-between;
+            align-items:center;
+            flex-wrap:wrap;
+            gap:14px;
+        }
+
+        .resultTitle{
+            color:#F97316;
+            font-size:20px;
+            font-weight:bold;
+        }
+
+        .resultAmount{
+            color:#111827;
+            font-size:30px;
+            font-weight:bold;
+        }
+
+        .resultDetail{
+            color:#4B5563;
+            font-size:17px;
+            font-weight:bold;
+            margin-top:12px;
+            line-height:1.5;
+        }
+
+        .qualified{
+            color:#15803D;
+        }
+
+        .notQualified{
+            color:#B91C1C;
+        }
+
+        .totalCard{
+            background:#F97316;
+            color:white;
+            padding:34px;
+            border-radius:16px;
+            box-shadow:0 6px 18px rgba(0,0,0,0.18);
+            text-align:center;
+            margin-top:8px;
+        }
+
+        .totalTitle{
+            color:white;
+            font-size:23px;
+            font-weight:bold;
+        }
+
+        .totalAmount{
+            color:white;
+            font-size:42px;
+            font-weight:bold;
+            margin-top:14px;
+        }
+
+        .totalSupportingText{
+            color:white;
+            font-size:16px;
+            line-height:1.5;
+            margin-top:12px;
+        }
+
+        .disclaimer{
+            margin-top:28px;
+            padding:18px;
+            background:#FFF3E8;
+            border-radius:12px;
+            color:#374151;
+            font-size:14px;
+            line-height:1.6;
+            text-align:center;
+        }
+
+        @media(max-width:600px){
+
+            body{
+                padding:18px;
+            }
+
+            .header{
+                padding:34px 18px;
+            }
+
+            .header h1{
+                font-size:29px;
+            }
+
+            .header p{
+                font-size:17px;
+            }
+
+            .rookieInputs{
+                grid-template-columns:1fr;
+            }
+
+            .quantityInput,
+            .fypInput{
+                font-size:22px;
+            }
+
+            .calculateBtn{
+                font-size:19px;
+            }
+
+            .resultHeader{
+                display:block;
+            }
+
+            .resultAmount{
+                font-size:27px;
+                margin-top:12px;
+            }
+
+            .totalAmount{
+                font-size:34px;
+            }
+
+        }
+
+    </style>
+
+</head>
+
+<body>
+
+<div class="pageContainer">
+
+    <button
+        class="backBtn"
+        onclick="location.href='index.html'"
+    >
+        ← Back to Home
+    </button>
+
+    <div class="header">
+
+        <h1>🤝 Recruiter Bonus</h1>
+
+        <p>
+            Calculate your bonus from your Rookies' production
+        </p>
+
+    </div>
+
+    <div class="quantitySection">
+
+        <label
+            class="inputLabel"
+            for="rookieCount"
+        >
+            How many Rookies do you have?
+        </label>
+
+        <input
+            type="number"
+            inputmode="numeric"
+            id="rookieCount"
+            class="quantityInput"
+            value="1"
+            min="1"
+            max="20"
+            onkeydown="generateWithEnter(event)"
+        >
+
+        <button
+            class="generateBtn"
+            onclick="generateRookieInputs()"
+        >
+            ADD ROOKIE FYP INPUTS
+        </button>
+
+    </div>
+
+    <div
+        id="rookieInputs"
+        class="rookieInputs"
+    ></div>
+
+    <div
+        id="calculateSection"
+        class="calculateSection"
+        style="display:none;"
+    >
+
+        <button
+            class="calculateBtn"
+            onclick="calculateRecruiterBonus()"
+        >
+            CALCULATE RECRUITER BONUS
+        </button>
+
+        <div
+            id="errorMessage"
+            class="errorMessage"
+        ></div>
+
+    </div>
+
+    <div
+        id="results"
+        class="results"
+    ></div>
+
+    <div class="disclaimer">
+
+        Each Rookie is calculated separately according to that
+        Rookie's accumulated Campaign FYP. Estimated results are
+        for reference only and remain subject to official campaign
+        terms, eligibility validation and final company verification.
+
+    </div>
+
+</div>
+
+<script>
+
+    function generateWithEnter(event){
+
+        if(event.key === "Enter"){
+
+            generateRookieInputs();
+
+        }
+
+    }
+
+
+    function calculateWithEnter(event){
+
+        if(event.key === "Enter"){
+
+            calculateRecruiterBonus();
+
+        }
+
+    }
+
+
+    function formatFYPInput(input){
+
+        let numbersOnly =
+            input.value.replace(/[^0-9]/g, "");
+
+        if(numbersOnly === ""){
+
+            input.value = "";
+
+            return;
+
+        }
+
+        let numericValue =
+            parseInt(numbersOnly, 10);
+
+        input.value =
+            numericValue.toLocaleString("en-US");
+
+    }
+
+
+    function formatMMK(amount){
+
+        return Math.round(amount).toLocaleString("en-US");
+
+    }
+
+
+    function generateRookieInputs(){
+
+        let rookieCount =
+            parseInt(
+                document.getElementById("rookieCount").value,
+                10
+            );
+
+        let errorMessage =
+            document.getElementById("errorMessage");
+
+        errorMessage.innerHTML = "";
+
+        if(
+            isNaN(rookieCount) ||
+            rookieCount < 1
+        ){
+
+            document.getElementById("rookieInputs").innerHTML =
+                "";
+
+            document.getElementById(
+                "calculateSection"
+            ).style.display = "none";
+
+            document.getElementById("results").innerHTML =
+                "";
+
+            return;
+
+        }
+
+        if(rookieCount > 20){
+
+            rookieCount = 20;
+
+            document.getElementById("rookieCount").value =
+                20;
+
+        }
+
+        let inputHTML = "";
+
+        for(
+            let rookieNumber = 1;
+            rookieNumber <= rookieCount;
+            rookieNumber++
+        ){
+
+            inputHTML += `
+
+                <div class="rookieInputCard">
+
+                    <div class="rookieTitle">
+                        🚀 Rookie ${rookieNumber}
+                    </div>
+
+                    <input
+                        type="text"
+                        inputmode="numeric"
+                        id="rookieFyp${rookieNumber}"
+                        class="fypInput"
+                        placeholder="Enter accumulated FYP"
+                        autocomplete="off"
+                        oninput="formatFYPInput(this)"
+                        onkeydown="calculateWithEnter(event)"
+                    >
+
+                </div>
+
+            `;
+
+        }
+
+        document.getElementById("rookieInputs").innerHTML =
+            inputHTML;
+
+        document.getElementById(
+            "calculateSection"
+        ).style.display = "block";
+
+        document.getElementById("results").innerHTML =
+            "";
+
+    }
+
+
+    function getRecruiterBonus(fyp){
+
+        if(fyp < 200000){
+
+            return 0;
+
+        }
+
+        else if(fyp < 500000){
+
+            return 15000;
+
+        }
+
+        else if(fyp < 1000000){
+
+            return 30000;
+
+        }
+
+        else if(fyp < 2000000){
+
+            return 60000;
+
+        }
+
+        else if(fyp < 3000000){
+
+            return 120000;
+
+        }
+
+        else if(fyp < 4000000){
+
+            return 180000;
+
+        }
+
+        else if(fyp < 5000000){
+
+            return 240000;
+
+        }
+
+        else if(fyp <= 10000000){
+
+            return 400000;
+
+        }
+
+        else{
+
+            return 800000;
+
+        }
+
+    }
+
+
+    function getNextRecruiterTier(fyp){
+
+        if(fyp < 200000){
+
+            return {
+                targetFyp:200000,
+                nextBonus:15000
+            };
+
+        }
+
+        else if(fyp < 500000){
+
+            return {
+                targetFyp:500000,
+                nextBonus:30000
+            };
+
+        }
+
+        else if(fyp < 1000000){
+
+            return {
+                targetFyp:1000000,
+                nextBonus:60000
+            };
+
+        }
+
+        else if(fyp < 2000000){
+
+            return {
+                targetFyp:2000000,
+                nextBonus:120000
+            };
+
+        }
+
+        else if(fyp < 3000000){
+
+            return {
+                targetFyp:3000000,
+                nextBonus:180000
+            };
+
+        }
+
+        else if(fyp < 4000000){
+
+            return {
+                targetFyp:4000000,
+                nextBonus:240000
+            };
+
+        }
+
+        else if(fyp < 5000000){
+
+            return {
+                targetFyp:5000000,
+                nextBonus:400000
+            };
+
+        }
+
+        else if(fyp <= 10000000){
+
+            return {
+                targetFyp:10000001,
+                nextBonus:800000
+            };
+
+        }
+
+        else{
+
+            return null;
+
+        }
+
+    }
+
+
+    function calculateRecruiterBonus(){
+
+        let rookieCount =
+            parseInt(
+                document.getElementById("rookieCount").value,
+                10
+            );
+
+        let errorMessage =
+            document.getElementById("errorMessage");
+
+        errorMessage.innerHTML = "";
+
+        if(
+            isNaN(rookieCount) ||
+            rookieCount < 1
+        ){
+
+            errorMessage.innerHTML =
+                "Please enter the number of Rookies.";
+
+            return;
+
+        }
+
+        if(rookieCount > 20){
+
+            rookieCount = 20;
+
+        }
+
+        let totalBonus = 0;
+        let resultHTML = "";
+        let hasValidInput = false;
+
+        for(
+            let rookieNumber = 1;
+            rookieNumber <= rookieCount;
+            rookieNumber++
+        ){
+
+            let input =
+                document.getElementById(
+                    "rookieFyp" + rookieNumber
+                );
+
+            if(!input){
+
+                continue;
+
+            }
+
+            let cleanedValue =
+                input.value.replace(/,/g, "");
+
+            let rookieFyp =
+                parseInt(cleanedValue, 10);
+
+            if(isNaN(rookieFyp)){
+
+                rookieFyp = 0;
+
+            }
+
+            hasValidInput = true;
+
+            let recruiterBonus =
+                getRecruiterBonus(rookieFyp);
+
+            let nextTier =
+                getNextRecruiterTier(rookieFyp);
+
+            totalBonus += recruiterBonus;
+
+            let detailHTML = "";
+
+            if(nextTier !== null){
+
+                let fypRequired =
+                    nextTier.targetFyp - rookieFyp;
+
+                detailHTML = `
+
+                    <div class="resultDetail">
+
+                        Next Recruiter Bonus:
+                        MMK ${formatMMK(
+                            nextTier.nextBonus
+                        )}
+
+                        <br>
+
+                        Additional Rookie FYP Required:
+                        MMK ${formatMMK(
+                            fypRequired
+                        )}
+
+                    </div>
+
+                `;
+
+            }
+
+            else{
+
+                detailHTML = `
+
+                    <div
+                        class="resultDetail qualified"
+                    >
+
+                        ✅ Highest Recruiter Bonus Tier Achieved
+
+                    </div>
+
+                `;
+
+            }
+
+            resultHTML += `
+
+                <div class="resultCard">
+
+                    <div class="resultHeader">
+
+                        <div class="resultTitle">
+                            🚀 Rookie ${rookieNumber}
+                        </div>
+
+                        <div class="resultAmount">
+                            MMK ${formatMMK(
+                                recruiterBonus
+                            )}
+                        </div>
+
+                    </div>
+
+                    <div class="resultDetail">
+
+                        Rookie Campaign FYP:
+                        MMK ${formatMMK(rookieFyp)}
+
+                    </div>
+
+                    ${detailHTML}
+
+                </div>
+
+            `;
+
+        }
+
+        if(!hasValidInput){
+
+            errorMessage.innerHTML =
+                "Please enter at least one Rookie FYP amount.";
+
+            document.getElementById("results").innerHTML =
+                "";
+
+            return;
+
+        }
+
+        resultHTML += `
+
+            <div class="totalCard">
+
+                <div class="totalTitle">
+                    🤝 TOTAL RECRUITER BONUS
+                </div>
+
+                <div class="totalAmount">
+                    MMK ${formatMMK(totalBonus)}
+                </div>
+
+                <div class="totalSupportingText">
+
+                    Calculated from ${rookieCount}
+                    Rookie${rookieCount > 1 ? "s" : ""}
+
+                </div>
+
+            </div>
+
+        `;
+
+        document.getElementById("results").innerHTML =
+            resultHTML;
+
+    }
+
+
+    generateRookieInputs();
+
+</script>
+
+</body>
+
+</html>
