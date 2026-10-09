@@ -231,24 +231,32 @@
         }
 
         .resultHeader{
-            display:flex;
-            justify-content:space-between;
-            align-items:center;
-            flex-wrap:wrap;
-            gap:14px;
-        }
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    flex-wrap:wrap;
+    gap:14px;
+}
 
         .resultTitle{
-            color:#F97316;
-            font-size:20px;
-            font-weight:bold;
-        }
+    color:#F97316;
+    font-size:20px;
+    font-weight:bold;
+}
 
-        .resultAmount{
-            color:#111827;
-            font-size:30px;
-            font-weight:bold;
-        }
+.rewardArrow{
+    color:#F97316;
+    font-size:34px;
+    font-weight:bold;
+    text-align:center;
+}
+
+.resultAmount{
+    color:#F97316;
+    font-size:30px;
+    font-weight:bold;
+    text-align:right;
+}
 
         .resultDetail{
             color:#4B5563;
@@ -339,17 +347,22 @@
             }
 
             .resultHeader{
-                display:block;
-            }
+    grid-template-columns:1fr;
+    gap:8px;
+    text-align:center;
+}
 
-            .resultAmount{
-                font-size:27px;
-                margin-top:12px;
-            }
+.rewardArrow{
+    transform:rotate(90deg);
+    font-size:28px;
+}
 
-            .totalAmount{
-                font-size:34px;
-            }
+.resultAmount{
+    color:#F97316;
+    font-size:27px;
+    margin-top:0;
+    text-align:center;
+}
 
         }
 
@@ -440,7 +453,7 @@
     <div class="disclaimer">
 
         Each Rookie is calculated separately according to that
-        Rookie's accumulated Campaign FYP. Estimated results are
+        Rookie's accumulated FYP. Estimated results are
         for reference only and remain subject to official campaign
         terms, eligibility validation and final company verification.
 
@@ -851,34 +864,38 @@
 
             resultHTML += `
 
-                <div class="resultCard">
+    <div class="resultCard">
 
-                    <div class="resultHeader">
+        <div class="resultHeader">
 
-                        <div class="resultTitle">
-                            🚀 Rookie ${rookieNumber}
-                        </div>
+            <div class="resultTitle">
+                🤝 Reward from Rookie ${rookieNumber}
+            </div>
 
-                        <div class="resultAmount">
-                            MMK ${formatMMK(
-                                recruiterBonus
-                            )}
-                        </div>
+            <div class="rewardArrow">
+                ➜
+            </div>
 
-                    </div>
+            <div class="resultAmount">
+                MMK ${formatMMK(
+                    recruiterBonus
+                )}
+            </div>
 
-                    <div class="resultDetail">
+        </div>
 
-                        Rookie Campaign FYP:
-                        MMK ${formatMMK(rookieFyp)}
+        <div class="resultDetail">
 
-                    </div>
+            Rookie FYP:
+            MMK ${formatMMK(rookieFyp)}
 
-                    ${detailHTML}
+        </div>
 
-                </div>
+        ${detailHTML}
 
-            `;
+    </div>
+
+`;
 
         }
 
