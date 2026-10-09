@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Normal IA Route Calculator</title>
+</head>
+
+<body>
+
+<h1>Normal IA Route Calculator</h1>
+
+<p>Enter your accumulated FYP.</p>
+
+<input type="number" id="fyp">
+
+<button onclick="calculate()">
+Calculate
+</button>
+
+<h2 id="result"></h2>
+
+<script>
+
+function calculate(){
+
+let fyp =
+parseFloat(
+document.getElementById("fyp").value
+);
+
+let reward = 0;
+
+if(fyp >= 200000)
+reward = 25000;
+
+if(fyp >= 500000)
+reward = 50000;
+
+if(fyp >= 1000000)
+reward = 100000;
+
+if(fyp >= 2000000)
+reward = 200000;
+
+if(fyp >= 3000000)
+reward = 300000;
+
+if(fyp >= 4000000)
+reward = 400000;
+
+if(fyp >= 5000000 && fyp <=10000000)
+reward = fyp * 0.12;
+
+if(fyp >=10000001)
+reward = fyp * 0.15;
+
+document.getElementById("result").innerHTML =
+"Reward = MMK " +
+reward.toLocaleString();
+
+}
+
+</script>
+
+</body>
+</html>
