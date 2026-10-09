@@ -2,148 +2,402 @@
 <html>
 
 <head>
-    <title>Normal IA Route Calculator</title>
+
+    <title>Normal IA Route</title>
+
+    <style>
+
+        body{
+            font-family: Arial, sans-serif;
+            background:#F5F5F5;
+            margin:0;
+            padding:30px;
+        }
+
+        .header{
+            background:#006341;
+            color:white;
+            padding:25px;
+            border-radius:12px;
+            text-align:center;
+            margin-bottom:30px;
+        }
+
+        .backBtn{
+            background:#006341;
+            color:white;
+            padding:10px 20px;
+            border:none;
+            border-radius:8px;
+            cursor:pointer;
+            font-size:16px;
+            margin-bottom:20px;
+        }
+
+        .inputSection{
+            text-align:center;
+            margin-bottom:30px;
+        }
+
+        input{
+            width:380px;
+            padding:18px;
+            font-size:24px;
+            font-weight:bold;
+            text-align:center;
+            border-radius:12px;
+            border:3px solid #006341;
+        }
+
+        .calculateBtn{
+            width:420px;
+            margin-top:15px;
+            padding:18px;
+            font-size:22px;
+            font-weight:bold;
+            border:none;
+            border-radius:12px;
+            background:#FFB81C;
+            color:#003B2F;
+            cursor:pointer;
+        }
+
+        .calculateBtn:hover{
+            background:#FFC94D;
+        }
+
+        .card{
+            background:white;
+            padding:25px;
+            border-radius:12px;
+            margin-top:15px;
+            box-shadow:0px 3px 10px rgba(0,0,0,0.1);
+        }
+
+        .title{
+            color:#006341;
+            font-weight:bold;
+            font-size:20px;
+        }
+
+        .amount{
+            font-size:32px;
+            font-weight:bold;
+            margin-top:10px;
+        }
+
+    </style>
+
 </head>
 
 <body>
 
-    <h1>Normal IA Route Calculator</h1>
+<button class="backBtn"
+onclick="location.href='index.html'">
 
-    <p>Enter your accumulated FYP.</p>
+← Back to Home
 
-    <input type="number" id="fyp">
+</button>
 
-    <button onclick="calculate()">
-        Calculate
-    </button>
+<div class="header">
 
-    <h2 id="result"></h2>
+<h1>💰 Normal IA Route</h1>
 
-    <h3 id="nextReward"></h3>
+<p>
+Enter your accumulated Campaign FYP
+</p>
 
-    <h3 id="needMore"></h3>
+</div>
 
-    <script>
+<div class="inputSection">
 
-        function calculate() {
+<input
+type="number"
+id="fyp"
+placeholder="Enter FYP">
 
-            let fyp =
-                parseFloat(
-                    document.getElementById("fyp").value
-                );
+<br>
 
-            let reward = 0;
-            let nextReward = 0;
-            let needMore = 0;
+<button
+class="calculateBtn"
+onclick="calculate()">
 
-            if (fyp >= 200000)
-                reward = 25000;
+CALCULATE REWARD
 
-            if (fyp >= 500000)
-                reward = 50000;
+</button>
 
-            if (fyp >= 1000000)
-                reward = 100000;
+</div>
 
-            if (fyp >= 2000000)
-                reward = 200000;
+<div id="results"></div>
 
-            if (fyp >= 3000000)
-                reward = 300000;
+<script>
 
-            if (fyp >= 4000000)
-                reward = 400000;
+function calculate() {
 
-            if (fyp >= 5000000 && fyp <= 10000000)
-                reward = fyp * 0.12;
+let fyp =
+parseFloat(
+document.getElementById("fyp").value
+);
 
-            if (fyp >= 10000001)
-                reward = fyp * 0.15;
+if(isNaN(fyp)){
+return;
+}
 
+let reward = 0;
+let nextReward = 0;
+let needMore = 0;
 
-            if (fyp < 200000) {
+if (fyp >= 200000)
+reward = 25000;
 
-                nextReward = 25000;
-                needMore = 200000 - fyp;
+if (fyp >= 500000)
+reward = 50000;
 
-            }
+if (fyp >= 1000000)
+reward = 100000;
 
-            else if (fyp < 500000) {
+if (fyp >= 2000000)
+reward = 200000;
 
-                nextReward = 50000;
-                needMore = 500000 - fyp;
+if (fyp >= 3000000)
+reward = 300000;
 
-            }
+if (fyp >= 4000000)
+reward = 400000;
 
-            else if (fyp < 1000000) {
+if (fyp >= 5000000 && fyp <= 10000000)
+reward = fyp * 0.12;
 
-                nextReward = 100000;
-                needMore = 1000000 - fyp;
-
-            }
-
-            else if (fyp < 2000000) {
-
-                nextReward = 200000;
-                needMore = 2000000 - fyp;
-
-            }
-
-            else if (fyp < 3000000) {
-
-                nextReward = 300000;
-                needMore = 3000000 - fyp;
-
-            }
-
-            else if (fyp < 4000000) {
-
-                nextReward = 400000;
-                needMore = 4000000 - fyp;
-
-            }
-
-            else if (fyp < 5000000) {
-
-                nextReward = Math.round(5000000 * 0.12);
-                needMore = 5000000 - fyp;
-
-            }
-
-            else if (fyp < 10000000) {
-
-                nextReward = Math.round(10000000 * 0.12);
-                needMore = 10000000 - fyp;
-
-            }
-
-            else {
-
-                nextReward = "Maximum Tier Achieved";
-                needMore = 0;
-
-            }
+if (fyp >= 10000001)
+reward = fyp * 0.15;
 
 
-            document.getElementById("result").innerHTML =
-                "💰 Current Reward: MMK " +
-                reward.toLocaleString();
+if(fyp < 200000){
 
+nextReward = 25000;
+needMore = 200000-fyp;
 
-            document.getElementById("nextReward").innerHTML =
-                "🏆 Next Reward: " +
-                (typeof nextReward === "number"
-                    ? "MMK " + nextReward.toLocaleString()
-                    : nextReward);
+document.getElementById("results").innerHTML =
 
+`
 
-            document.getElementById("needMore").innerHTML =
-                "📈 Additional FYP Required: MMK " +
-                needMore.toLocaleString();
+<div class="card">
 
-        }
+<div class="title">
+💰 CURRENT REWARD
+</div>
 
-    </script>
+<div class="amount">
+MMK ${reward.toLocaleString()}
+</div>
+
+</div>
+
+<div class="card">
+
+<div class="title">
+🏆 NEXT REWARD
+</div>
+
+<div class="amount">
+MMK ${nextReward.toLocaleString()}
+</div>
+
+</div>
+
+<div class="card">
+
+<div class="title">
+📈 FYP REQUIRED
+</div>
+
+<div class="amount">
+MMK ${needMore.toLocaleString()}
+</div>
+
+</div>
+
+`;
+
+return;
+
+}
+
+if(fyp >=200000 && fyp <500000){
+nextReward = 50000;
+needMore = 500000-fyp;
+}
+
+else if(fyp <1000000){
+nextReward = 100000;
+needMore = 1000000-fyp;
+}
+
+else if(fyp <2000000){
+nextReward = 200000;
+needMore = 2000000-fyp;
+}
+
+else if(fyp <3000000){
+nextReward = 300000;
+needMore = 3000000-fyp;
+}
+
+else if(fyp <4000000){
+nextReward = 400000;
+needMore = 4000000-fyp;
+}
+
+else if(fyp <5000000){
+nextReward = 600000;
+needMore = 5000000-fyp;
+}
+
+if(fyp <5000000){
+
+document.getElementById("results").innerHTML =
+
+`
+
+<div class="card">
+
+<div class="title">
+💰 CURRENT REWARD
+</div>
+
+<div class="amount">
+MMK ${reward.toLocaleString()}
+</div>
+
+</div>
+
+<div class="card">
+
+<div class="title">
+🏆 NEXT REWARD
+</div>
+
+<div class="amount">
+MMK ${nextReward.toLocaleString()}
+</div>
+
+</div>
+
+<div class="card">
+
+<div class="title">
+📈 FYP REQUIRED
+</div>
+
+<div class="amount">
+MMK ${needMore.toLocaleString()}
+</div>
+
+</div>
+
+`;
+
+}
+
+else if(fyp <=10000000){
+
+document.getElementById("results").innerHTML =
+
+`
+
+<div class="card">
+
+<div class="title">
+💰 CURRENT REWARD
+</div>
+
+<div class="amount">
+MMK ${reward.toLocaleString()}
+</div>
+
+</div>
+
+<div class="card">
+
+<div class="title">
+🏆 VARIABLE REWARD
+</div>
+
+<div class="amount">
+12% OF FYP
+</div>
+
+</div>
+
+<div class="card">
+
+<div class="title">
+📈 FOR EVERY ADDITIONAL
+MMK 100,000 FYP
+</div>
+
+<div class="amount">
+YOU WILL EARN
+MMK 12,000 MORE REWARD
+</div>
+
+</div>
+
+`;
+
+}
+
+else{
+
+document.getElementById("results").innerHTML =
+
+`
+
+<div class="card">
+
+<div class="title">
+💰 CURRENT REWARD
+</div>
+
+<div class="amount">
+MMK ${reward.toLocaleString()}
+</div>
+
+</div>
+
+<div class="card">
+
+<div class="title">
+🏆 VARIABLE REWARD
+</div>
+
+<div class="amount">
+15% OF FYP
+</div>
+
+</div>
+
+<div class="card">
+
+<div class="title">
+📈 FOR EVERY ADDITIONAL
+MMK 100,000 FYP
+</div>
+
+<div class="amount">
+YOU WILL EARN
+MMK 15,000 MORE REWARD
+</div>
+
+</div>
+
+`;
+
+}
+
+}
+
+</script>
 
 </body>
 
