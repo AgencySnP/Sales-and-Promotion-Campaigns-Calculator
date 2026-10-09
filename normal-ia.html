@@ -18,6 +18,10 @@ Calculate
 
 <h2 id="result"></h2>
 
+<h3 id="nextTarget"></h3>
+
+<h3 id="needMore"></h3>
+
 <script>
 
 function calculate(){
@@ -53,9 +57,55 @@ reward = fyp * 0.12;
 if(fyp >=10000001)
 reward = fyp * 0.15;
 
+let nextTarget = "";
+let needMore = "";
+
+if(fyp < 200000){
+nextTarget = 200000;
+needMore = 200000 - fyp;
+}
+
+else if(fyp < 500000){
+nextTarget = 500000;
+needMore = 500000 - fyp;
+}
+
+else if(fyp < 1000000){
+nextTarget = 1000000;
+needMore = 1000000 - fyp;
+}
+
+else if(fyp < 2000000){
+nextTarget = 2000000;
+needMore = 2000000 - fyp;
+}
+
+else if(fyp < 3000000){
+nextTarget = 3000000;
+needMore = 3000000 - fyp;
+}
+
+else if(fyp < 4000000){
+nextTarget = 4000000;
+needMore = 4000000 - fyp;
+}
+
+else if(fyp < 5000000){
+nextTarget = 5000000;
+needMore = 5000000 - fyp;
+}
+
 document.getElementById("result").innerHTML =
-"Reward = MMK " +
+"Current Reward = MMK " +
 reward.toLocaleString();
+
+document.getElementById("nextTarget").innerHTML =
+"Next Milestone = MMK " +
+nextTarget.toLocaleString();
+
+document.getElementById("needMore").innerHTML =
+"You Need = MMK " +
+needMore.toLocaleString();
 
 }
 
