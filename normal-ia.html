@@ -1,115 +1,150 @@
 <!DOCTYPE html>
 <html>
+
 <head>
     <title>Normal IA Route Calculator</title>
 </head>
 
 <body>
 
-<h1>Normal IA Route Calculator</h1>
+    <h1>Normal IA Route Calculator</h1>
 
-<p>Enter your accumulated FYP.</p>
+    <p>Enter your accumulated FYP.</p>
 
-<input type="number" id="fyp">
+    <input type="number" id="fyp">
 
-<button onclick="calculate()">
-Calculate
-</button>
+    <button onclick="calculate()">
+        Calculate
+    </button>
 
-<h2 id="result"></h2>
+    <h2 id="result"></h2>
 
-<h3 id="nextTarget"></h3>
+    <h3 id="nextReward"></h3>
 
-<h3 id="needMore"></h3>
+    <h3 id="needMore"></h3>
 
-<script>
+    <script>
 
-function calculate(){
+        function calculate() {
 
-let fyp =
-parseFloat(
-document.getElementById("fyp").value
-);
+            let fyp =
+                parseFloat(
+                    document.getElementById("fyp").value
+                );
 
-let reward = 0;
+            let reward = 0;
+            let nextReward = 0;
+            let needMore = 0;
 
-if(fyp >= 200000)
-reward = 25000;
+            if (fyp >= 200000)
+                reward = 25000;
 
-if(fyp >= 500000)
-reward = 50000;
+            if (fyp >= 500000)
+                reward = 50000;
 
-if(fyp >= 1000000)
-reward = 100000;
+            if (fyp >= 1000000)
+                reward = 100000;
 
-if(fyp >= 2000000)
-reward = 200000;
+            if (fyp >= 2000000)
+                reward = 200000;
 
-if(fyp >= 3000000)
-reward = 300000;
+            if (fyp >= 3000000)
+                reward = 300000;
 
-if(fyp >= 4000000)
-reward = 400000;
+            if (fyp >= 4000000)
+                reward = 400000;
 
-if(fyp >= 5000000 && fyp <=10000000)
-reward = fyp * 0.12;
+            if (fyp >= 5000000 && fyp <= 10000000)
+                reward = fyp * 0.12;
 
-if(fyp >=10000001)
-reward = fyp * 0.15;
+            if (fyp >= 10000001)
+                reward = fyp * 0.15;
 
-let nextTarget = "";
-let needMore = "";
 
-if(fyp < 200000){
-nextTarget = 200000;
-needMore = 200000 - fyp;
-}
+            if (fyp < 200000) {
 
-else if(fyp < 500000){
-nextTarget = 500000;
-needMore = 500000 - fyp;
-}
+                nextReward = 25000;
+                needMore = 200000 - fyp;
 
-else if(fyp < 1000000){
-nextTarget = 1000000;
-needMore = 1000000 - fyp;
-}
+            }
 
-else if(fyp < 2000000){
-nextTarget = 2000000;
-needMore = 2000000 - fyp;
-}
+            else if (fyp < 500000) {
 
-else if(fyp < 3000000){
-nextTarget = 3000000;
-needMore = 3000000 - fyp;
-}
+                nextReward = 50000;
+                needMore = 500000 - fyp;
 
-else if(fyp < 4000000){
-nextTarget = 4000000;
-needMore = 4000000 - fyp;
-}
+            }
 
-else if(fyp < 5000000){
-nextTarget = 5000000;
-needMore = 5000000 - fyp;
-}
+            else if (fyp < 1000000) {
 
-document.getElementById("result").innerHTML =
-"Current Reward = MMK " +
-reward.toLocaleString();
+                nextReward = 100000;
+                needMore = 1000000 - fyp;
 
-document.getElementById("nextTarget").innerHTML =
-"Next Milestone = MMK " +
-nextTarget.toLocaleString();
+            }
 
-document.getElementById("needMore").innerHTML =
-"You Need = MMK " +
-needMore.toLocaleString();
+            else if (fyp < 2000000) {
 
-}
+                nextReward = 200000;
+                needMore = 2000000 - fyp;
 
-</script>
+            }
+
+            else if (fyp < 3000000) {
+
+                nextReward = 300000;
+                needMore = 3000000 - fyp;
+
+            }
+
+            else if (fyp < 4000000) {
+
+                nextReward = 400000;
+                needMore = 4000000 - fyp;
+
+            }
+
+            else if (fyp < 5000000) {
+
+                nextReward = Math.round(5000000 * 0.12);
+                needMore = 5000000 - fyp;
+
+            }
+
+            else if (fyp < 10000000) {
+
+                nextReward = Math.round(10000000 * 0.12);
+                needMore = 10000000 - fyp;
+
+            }
+
+            else {
+
+                nextReward = "Maximum Tier Achieved";
+                needMore = 0;
+
+            }
+
+
+            document.getElementById("result").innerHTML =
+                "💰 Current Reward: MMK " +
+                reward.toLocaleString();
+
+
+            document.getElementById("nextReward").innerHTML =
+                "🏆 Next Reward: " +
+                (typeof nextReward === "number"
+                    ? "MMK " + nextReward.toLocaleString()
+                    : nextReward);
+
+
+            document.getElementById("needMore").innerHTML =
+                "📈 Additional FYP Required: MMK " +
+                needMore.toLocaleString();
+
+        }
+
+    </script>
 
 </body>
+
 </html>
