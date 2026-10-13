@@ -1,52 +1,91 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 
 <head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
     <title>S&P Campaigns Calculator</title>
 
     <style>
 
+        *{
+            box-sizing:border-box;
+        }
+
         body{
-            font-family: Arial, sans-serif;
-            background:#f5f5f5;
+            font-family:Arial, sans-serif;
+            background:#F5F5F5;
             margin:0;
             padding:40px;
+            color:#1F2937;
+        }
+
+        .pageContainer{
+            max-width:1200px;
+            margin:0 auto;
         }
 
         h1{
             text-align:center;
             color:#006341;
+            margin-bottom:12px;
         }
 
-        @media(max-width:600px){
+        .subtitle{
+            text-align:center;
+            margin-bottom:38px;
+            color:#374151;
+            font-size:17px;
+        }
 
-    .container{
-        grid-template-columns:1fr;
-    }
-
-    .card{
-        min-height:140px;
-    }
-
-}
+        .container{
+            display:grid;
+            grid-template-columns:
+                repeat(auto-fit, minmax(280px, 1fr));
+            gap:28px;
+        }
 
         .card{
-            border-radius:12px;
-            padding:30px;
+            min-height:190px;
+            border-radius:16px;
+            padding:34px 28px;
             text-align:center;
-            box-shadow:0 3px 10px rgba(0,0,0,0.1);
+            box-shadow:0 5px 15px rgba(0,0,0,0.12);
             cursor:pointer;
-            transition:0.3s;
+            transition:0.25s;
             color:white;
+            display:flex;
+            flex-direction:column;
+            align-items:center;
+            justify-content:center;
         }
 
         .card:hover{
-            transform:translateY(-5px);
+            transform:translateY(-6px);
+            box-shadow:0 10px 22px rgba(0,0,0,0.18);
         }
 
         .card h2{
             color:white;
-            margin-bottom:15px;
+            margin:0 0 16px 0;
+            font-size:25px;
+        }
+
+        .card p{
+            margin:0;
+            color:white;
+            font-size:17px;
+            line-height:1.5;
+        }
+
+        .mdrt{
+            background:#D4AF37;
         }
 
         .normal{
@@ -61,8 +100,40 @@
             background:#F97316;
         }
 
-        .mdrt{
-            background:#D4AF37;
+        @media(max-width:600px){
+
+            body{
+                padding:24px 18px;
+            }
+
+            h1{
+                font-size:28px;
+            }
+
+            .subtitle{
+                font-size:16px;
+                margin-bottom:30px;
+            }
+
+            .container{
+                grid-template-columns:1fr;
+                gap:24px;
+            }
+
+            .card{
+                width:100%;
+                min-height:165px;
+                padding:30px 22px;
+            }
+
+            .card h2{
+                font-size:24px;
+            }
+
+            .card p{
+                font-size:16px;
+            }
+
         }
 
     </style>
@@ -71,59 +142,43 @@
 
 <body>
 
-<h1>S&P Campaigns Calculator</h1>
+<div class="pageContainer">
 
-<p style="text-align:center;">
-    Select a campaign to calculate your estimated rewards.
-</p>
+    <h1>S&P Campaigns Calculator</h1>
 
-<div class="container">
+    <p class="subtitle">
+        Select a campaign to calculate your estimated rewards.
+    </p>
 
-    <div class="card normal"
-         onclick="location.href='normal-ia.html'">
+    <div class="container">
 
-        <h2>💰 Normal IA Route</h2>
+        <div
+            class="card mdrt"
+            onclick="location.href='mdrt.html'"
+        >
 
-        <p>
-            Calculate reward based on accumulated FYP.
-        </p>
+            <h2>🏆 MDRT Rewards</h2>
 
-    </div>
+            <p>
+                Explore MDRT rewards and calculate your eligible benefits.
+            </p>
 
-    <div class="card rookie"
-         onclick="location.href='rookie.html'">
+        </div>
 
-        <h2>🚀 Rookie Reward</h2>
+        <div
+            class="card normal"
+            onclick="location.href='normal-ia.html'"
+        >
 
-        <p>
-            Calculate Rookie campaign payout.
-        </p>
+            <h2>💰 Normal IA Route</h2>
 
-    </div>
+            <p>
+                Calculate reward based on accumulated FYP.
+            </p>
 
-    <div class="card recruiter"
-         onclick="location.href='recruiter.html'">
+        </div>
 
-        <h2>🤝 Recruiter Bonus</h2>
-
-        <p>
-            Calculate bonus earned from Rookie production.
-        </p>
-
-    </div>
-
-    <div class="card mdrt">
-
-        <h2>🏆 MDRT Rewards</h2>
-
-        <p>
-            Coming Soon
-        </p>
-
-    </div>
-
-</div>
-
-</body>
-
-</html>
+        <div
+            class="card rookie"
+            onclick="location.href='rookie.html'"
+     
