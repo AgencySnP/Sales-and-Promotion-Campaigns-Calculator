@@ -1,0 +1,739 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>MDRT Business Support</title>
+
+    <style>
+
+        *{
+            box-sizing:border-box;
+        }
+
+        body{
+            font-family:Arial, sans-serif;
+            background:#F5F5F5;
+            margin:0;
+            padding:30px;
+            color:#1F2937;
+        }
+
+        .pageContainer{
+            max-width:1100px;
+            margin:0 auto;
+        }
+
+        .backBtn{
+            display:inline-block;
+            background:#5B21B6;
+            color:white;
+            padding:14px 24px;
+            border:none;
+            border-radius:10px;
+            cursor:pointer;
+            font-size:17px;
+            font-weight:bold;
+            margin-bottom:24px;
+            transition:0.2s;
+        }
+
+        .backBtn:hover{
+            background:#4C1D95;
+            transform:translateY(-2px);
+        }
+
+        .header{
+            background:linear-gradient(
+                135deg,
+                #5B21B6,
+                #1D4ED8
+            );
+            color:white;
+            padding:46px 25px;
+            border-radius:18px;
+            text-align:center;
+            margin-bottom:34px;
+        }
+
+        .header h1{
+            margin:0 0 16px 0;
+            font-size:39px;
+        }
+
+        .header p{
+            margin:0;
+            font-size:19px;
+            line-height:1.5;
+        }
+
+        .criteriaCard{
+            background:white;
+            border-radius:16px;
+            padding:30px;
+            box-shadow:0 5px 15px rgba(0,0,0,0.12);
+            border-left:8px solid #5B21B6;
+            margin-bottom:28px;
+            text-align:center;
+        }
+
+        .criteriaTitle{
+            color:#5B21B6;
+            font-size:23px;
+            font-weight:bold;
+            line-height:1.5;
+        }
+
+        .criteriaAmount{
+            color:#111827;
+            font-size:35px;
+            font-weight:bold;
+            margin-top:14px;
+        }
+
+        .buttonRow{
+            display:grid;
+            grid-template-columns:1fr 1fr;
+            gap:18px;
+            max-width:520px;
+            margin:26px auto 0 auto;
+        }
+
+        .answerBtn{
+            min-height:64px;
+            border:none;
+            border-radius:13px;
+            cursor:pointer;
+            font-size:20px;
+            font-weight:bold;
+            transition:0.2s;
+        }
+
+        .yesBtn{
+            background:#16A34A;
+            color:white;
+        }
+
+        .yesBtn:hover{
+            background:#15803D;
+            transform:translateY(-2px);
+        }
+
+        .noBtn{
+            background:#E5E7EB;
+            color:#374151;
+        }
+
+        .noBtn:hover{
+            background:#D1D5DB;
+            transform:translateY(-2px);
+        }
+
+        .notEligible{
+            display:none;
+            background:#FEE2E2;
+            border-left:8px solid #DC2626;
+            border-radius:16px;
+            padding:28px;
+            margin-bottom:28px;
+        }
+
+        .notEligibleTitle{
+            color:#B91C1C;
+            font-size:25px;
+            font-weight:bold;
+        }
+
+        .notEligibleText{
+            color:#374151;
+            font-size:18px;
+            line-height:1.6;
+            margin-top:12px;
+        }
+
+        .calculatorSection{
+            display:none;
+            margin-top:28px;
+        }
+
+        .inputSection{
+            width:100%;
+            max-width:540px;
+            margin:0 auto 30px auto;
+            text-align:center;
+        }
+
+        .inputLabel{
+            display:block;
+            color:#5B21B6;
+            font-size:19px;
+            font-weight:bold;
+            line-height:1.5;
+            margin-bottom:13px;
+        }
+
+        .fypInput{
+            display:block;
+            width:100%;
+            min-height:74px;
+            padding:18px 22px;
+            font-size:27px;
+            font-weight:bold;
+            text-align:center;
+            background:white;
+            color:#111827;
+            border:3px solid #5B21B6;
+            border-radius:14px;
+            outline:none;
+        }
+
+        .fypInput:focus{
+            border-color:#FFB81C;
+            box-shadow:0 0 0 4px rgba(255,184,28,0.25);
+        }
+
+        .fypInput::placeholder{
+            color:#9CA3AF;
+            font-weight:normal;
+        }
+
+        .calculateBtn{
+            display:block;
+            width:100%;
+            min-height:74px;
+            margin-top:16px;
+            padding:18px 22px;
+            font-size:21px;
+            font-weight:bold;
+            border:none;
+            border-radius:14px;
+            background:#FFB81C;
+            color:#003B2F;
+            cursor:pointer;
+            transition:0.2s;
+        }
+
+        .calculateBtn:hover{
+            background:#FFC94D;
+            transform:translateY(-2px);
+            box-shadow:0 6px 14px rgba(0,0,0,0.15);
+        }
+
+        .errorMessage{
+            color:#B91C1C;
+            font-size:16px;
+            font-weight:bold;
+            margin-top:14px;
+            min-height:20px;
+        }
+
+        .results{
+            display:grid;
+            gap:20px;
+        }
+
+        .resultCard{
+            background:white;
+            border-radius:16px;
+            padding:30px;
+            box-shadow:0 5px 15px rgba(0,0,0,0.12);
+            border-left:8px solid #D4AF37;
+        }
+
+        .resultTitle{
+            color:#8A6500;
+            font-size:22px;
+            font-weight:bold;
+        }
+
+        .resultAmount{
+            color:#111827;
+            font-size:40px;
+            font-weight:bold;
+            margin-top:14px;
+        }
+
+        .supportingText{
+            color:#4B5563;
+            font-size:18px;
+            font-weight:bold;
+            line-height:1.6;
+            margin-top:14px;
+        }
+
+        .capCard{
+            background:linear-gradient(
+                135deg,
+                #D4AF37,
+                #FFB81C
+            );
+            border-left:none;
+        }
+
+        .capCard .resultTitle,
+        .capCard .resultAmount,
+        .capCard .supportingText{
+            color:#1F2937;
+        }
+
+        .disclaimer{
+            margin-top:28px;
+            padding:20px;
+            background:#EEE9FF;
+            border-radius:12px;
+            color:#374151;
+            font-size:14px;
+            line-height:1.7;
+            text-align:center;
+        }
+
+        @media(max-width:600px){
+
+            body{
+                padding:20px 18px;
+            }
+
+            .header{
+                padding:36px 20px;
+            }
+
+            .header h1{
+                font-size:30px;
+            }
+
+            .header p{
+                font-size:17px;
+            }
+
+            .criteriaCard{
+                padding:25px 20px;
+            }
+
+            .criteriaAmount{
+                font-size:29px;
+            }
+
+            .buttonRow{
+                grid-template-columns:1fr;
+            }
+
+            .fypInput{
+                font-size:23px;
+            }
+
+            .calculateBtn{
+                font-size:18px;
+            }
+
+            .resultAmount{
+                font-size:32px;
+            }
+
+        }
+
+    </style>
+
+</head>
+
+<body>
+
+<div class="pageContainer">
+
+    <button
+        class="backBtn"
+        onclick="location.href='mdrt.html'"
+    >
+        ← Back to MDRT Rewards
+    </button>
+
+    <div class="header">
+
+        <h1>💼 MDRT Business Support</h1>
+
+        <p>
+            Check your criteria first, then calculate your
+            estimated Business Support reward.
+        </p>
+
+    </div>
+
+    <div class="criteriaCard">
+
+        <div class="criteriaTitle">
+            Have you achieved the required MDRT Leaderboard benchmark?
+        </div>
+
+        <div class="criteriaAmount">
+            MMK 25,000,000 FYP
+        </div>
+
+        <div class="buttonRow">
+
+            <button
+                class="answerBtn yesBtn"
+                onclick="showCalculator()"
+            >
+                ✅ YES
+            </button>
+
+            <button
+                class="answerBtn noBtn"
+                onclick="showNotEligible()"
+            >
+                ❌ NO
+            </button>
+
+        </div>
+
+    </div>
+
+    <div
+        id="notEligible"
+        class="notEligible"
+    >
+
+        <div class="notEligibleTitle">
+            ❌ Not Eligible Yet
+        </div>
+
+        <div class="notEligibleText">
+
+            The minimum benchmark is
+            <strong>MMK 25,000,000 FYP</strong>
+            at the MDRT Leaderboard.
+
+        </div>
+
+    </div>
+
+    <div
+        id="calculatorSection"
+        class="calculatorSection"
+    >
+
+        <div class="inputSection">
+
+            <label
+                class="inputLabel"
+                for="campaignFyp"
+            >
+                Enter eligible Campaign Issued FYP
+            </label>
+
+            <input
+                type="text"
+                inputmode="numeric"
+                id="campaignFyp"
+                class="fypInput"
+                placeholder="Example: 5,000,000"
+                autocomplete="off"
+                oninput="formatFYPInput(this)"
+                onkeydown="calculateWithEnter(event)"
+            >
+
+            <button
+                class="calculateBtn"
+                onclick="calculateBusinessSupport()"
+            >
+                CALCULATE BUSINESS SUPPORT
+            </button>
+
+            <div
+                id="errorMessage"
+                class="errorMessage"
+            ></div>
+
+        </div>
+
+        <div
+            id="results"
+            class="results"
+        ></div>
+
+    </div>
+
+    <div class="disclaimer">
+
+        The MMK 25,000,000 benchmark uses the MDRT Leaderboard
+        eligible period. Business Support is calculated from eligible
+        Campaign Issued FYP. Results are estimates and remain subject
+        to the official campaign terms, qualifying-case validation,
+        free-look requirements and final company verification.
+
+    </div>
+
+</div>
+
+<script>
+
+    function showCalculator(){
+
+        document.getElementById(
+            "calculatorSection"
+        ).style.display = "block";
+
+        document.getElementById(
+            "notEligible"
+        ).style.display = "none";
+
+        document.getElementById(
+            "campaignFyp"
+        ).focus();
+
+    }
+
+
+    function showNotEligible(){
+
+        document.getElementById(
+            "calculatorSection"
+        ).style.display = "none";
+
+        document.getElementById(
+            "notEligible"
+        ).style.display = "block";
+
+        document.getElementById(
+            "results"
+        ).innerHTML = "";
+
+    }
+
+
+    function calculateWithEnter(event){
+
+        if(event.key === "Enter"){
+
+            calculateBusinessSupport();
+
+        }
+
+    }
+
+
+    function formatFYPInput(input){
+
+        let numbersOnly =
+            input.value.replace(/[^0-9]/g, "");
+
+        if(numbersOnly === ""){
+
+            input.value = "";
+
+            return;
+
+        }
+
+        let numericValue =
+            parseInt(numbersOnly, 10);
+
+        input.value =
+            numericValue.toLocaleString("en-US");
+
+    }
+
+
+    function formatMMK(amount){
+
+        return Math.round(
+            amount
+        ).toLocaleString("en-US");
+
+    }
+
+
+    function calculateBusinessSupport(){
+
+        let inputValue =
+            document.getElementById(
+                "campaignFyp"
+            ).value;
+
+        let cleanedValue =
+            inputValue.replace(/,/g, "");
+
+        let campaignFyp =
+            parseInt(cleanedValue, 10);
+
+        let errorMessage =
+            document.getElementById(
+                "errorMessage"
+            );
+
+        errorMessage.innerHTML = "";
+
+        if(
+            isNaN(campaignFyp) ||
+            campaignFyp < 0
+        ){
+
+            errorMessage.innerHTML =
+                "Please enter a valid Campaign Issued FYP amount.";
+
+            document.getElementById(
+                "results"
+            ).innerHTML = "";
+
+            return;
+
+        }
+
+
+        let reward = 0;
+        let fullFiveMillionBlocks =
+            Math.floor(campaignFyp / 5000000);
+
+        reward =
+            fullFiveMillionBlocks * 150000;
+
+
+        /*
+        The campaign visual shows MMK 80 million FYP
+        as achieving the MMK 2.5 million maximum cap.
+        */
+
+        if(campaignFyp >= 80000000){
+
+            reward = 2500000;
+
+        }
+
+
+        if(reward > 2500000){
+
+            reward = 2500000;
+
+        }
+
+
+        if(campaignFyp < 5000000){
+
+            let fypRequired =
+                5000000 - campaignFyp;
+
+            document.getElementById(
+                "results"
+            ).innerHTML = `
+
+                <div class="resultCard">
+
+                    <div class="resultTitle">
+                        💼 CURRENT BUSINESS SUPPORT
+                    </div>
+
+                    <div class="resultAmount">
+                        MMK 0
+                    </div>
+
+                    <div class="supportingText">
+
+                        Additional Campaign Issued FYP Required:
+                        MMK ${formatMMK(fypRequired)}
+
+                    </div>
+
+                </div>
+
+            `;
+
+            return;
+
+        }
+
+
+        if(campaignFyp >= 80000000){
+
+            document.getElementById(
+                "results"
+            ).innerHTML = `
+
+                <div class="resultCard capCard">
+
+                    <div class="resultTitle">
+                        🏆 BUSINESS SUPPORT REWARD
+                    </div>
+
+                    <div class="resultAmount">
+                        MMK ${formatMMK(reward)}
+                    </div>
+
+                    <div class="supportingText">
+                        ✅ MAXIMUM REWARD CAP ACHIEVED
+                    </div>
+
+                </div>
+
+            `;
+
+            return;
+
+        }
+
+
+        let nextMilestone =
+            (fullFiveMillionBlocks + 1) * 5000000;
+
+        let additionalFypRequired =
+            nextMilestone - campaignFyp;
+
+        let nextReward =
+            reward + 150000;
+
+        if(nextReward > 2500000){
+
+            nextReward = 2500000;
+
+        }
+
+
+        document.getElementById(
+            "results"
+        ).innerHTML = `
+
+            <div class="resultCard">
+
+                <div class="resultTitle">
+                    💼 CURRENT BUSINESS SUPPORT
+                </div>
+
+                <div class="resultAmount">
+                    MMK ${formatMMK(reward)}
+                </div>
+
+            </div>
+
+            <div class="resultCard">
+
+                <div class="resultTitle">
+                    🏆 NEXT BUSINESS SUPPORT
+                </div>
+
+                <div class="resultAmount">
+                    MMK ${formatMMK(nextReward)}
+                </div>
+
+                <div class="supportingText">
+
+                    Additional Campaign Issued FYP Required:
+                    MMK ${formatMMK(additionalFypRequired)}
+
+                </div>
+
+            </div>
+
+        `;
+
+    }
+
+</script>
+
+</body>
+
+</html>
