@@ -5,10 +5,8 @@
 
     <meta charset="UTF-8">
 
-    <meta
-        name="viewport"
-        content="width=device-width, initial-scale=1.0"
-    >
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
 
     <title>S&P Campaigns Calculator</title>
 
@@ -39,7 +37,7 @@
 
         .subtitle{
             text-align:center;
-            margin-bottom:38px;
+            margin-bottom:40px;
             color:#374151;
             font-size:17px;
         }
@@ -47,41 +45,65 @@
         .container{
             display:grid;
             grid-template-columns:
-                repeat(auto-fit, minmax(280px, 1fr));
-            gap:28px;
+                repeat(auto-fit,minmax(280px,1fr));
+            gap:30px;
         }
 
         .card{
+
             min-height:190px;
+
             border-radius:16px;
+
             padding:34px 28px;
+
             text-align:center;
-            box-shadow:0 5px 15px rgba(0,0,0,0.12);
+
+            box-shadow:
+                0 5px 15px rgba(0,0,0,0.12);
+
             cursor:pointer;
+
             transition:0.25s;
+
             color:white;
+
             display:flex;
             flex-direction:column;
-            align-items:center;
             justify-content:center;
+            align-items:center;
+
         }
 
         .card:hover{
+
             transform:translateY(-6px);
-            box-shadow:0 10px 22px rgba(0,0,0,0.18);
+
+            box-shadow:
+                0 10px 22px rgba(0,0,0,0.18);
+
         }
 
         .card h2{
-            color:white;
+
             margin:0 0 16px 0;
-            font-size:25px;
+
+            color:white;
+
+            font-size:24px;
+
         }
 
         .card p{
+
             margin:0;
+
             color:white;
+
             font-size:17px;
+
             line-height:1.5;
+
         }
 
         .mdrt{
@@ -111,8 +133,8 @@
             }
 
             .subtitle{
-                font-size:16px;
                 margin-bottom:30px;
+                font-size:16px;
             }
 
             .container{
@@ -121,17 +143,7 @@
             }
 
             .card{
-                width:100%;
-                min-height:165px;
-                padding:30px 22px;
-            }
-
-            .card h2{
-                font-size:24px;
-            }
-
-            .card p{
-                font-size:16px;
+                min-height:170px;
             }
 
         }
@@ -152,10 +164,10 @@
 
     <div class="container">
 
-        <div
-            class="card mdrt"
-            onclick="location.href='mdrt.html'"
-        >
+        <!-- MDRT -->
+
+        <div class="card mdrt"
+             onclick="location.href='mdrt.html'">
 
             <h2>🏆 MDRT Rewards</h2>
 
@@ -165,10 +177,10 @@
 
         </div>
 
-        <div
-            class="card normal"
-            onclick="location.href='normal-ia.html'"
-        >
+        <!-- Normal IA -->
+
+        <div class="card normal"
+             onclick="location.href='normal-ia.html'">
 
             <h2>💰 Normal IA Route</h2>
 
@@ -178,7 +190,36 @@
 
         </div>
 
-        <div
-            class="card rookie"
-            onclick="location.href='rookie.html'"
-     
+        <!-- Rookie -->
+
+        <div class="card rookie"
+             onclick="location.href='rookie.html'">
+
+            <h2>🚀 Rookie Reward</h2>
+
+            <p>
+                Calculate your Rookie campaign payout.
+            </p>
+
+        </div>
+
+        <!-- Recruiter -->
+
+        <div class="card recruiter"
+             onclick="location.href='recruiter.html'">
+
+            <h2>🤝 Recruiter Bonus</h2>
+
+            <p>
+                Calculate bonus earned from Rookie production.
+            </p>
+
+        </div>
+
+    </div>
+
+</div>
+
+</body>
+
+</html>
