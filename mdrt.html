@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>MDRT Rewards</title>
+
+    <style>
+
+        *{
+            box-sizing:border-box;
+        }
+
+        body{
+            font-family:Arial, sans-serif;
+            background:#F5F5F5;
+            margin:0;
+            padding:30px;
+            color:#1F2937;
+        }
+
+        .pageContainer{
+            max-width:1200px;
+            margin:0 auto;
+        }
+
+        .backBtn{
+            display:inline-block;
+            background:#D4AF37;
+            color:#222222;
+            padding:14px 24px;
+            border:none;
+            border-radius:10px;
+            cursor:pointer;
+            font-size:17px;
+            font-weight:bold;
+            margin-bottom:24px;
+            transition:0.2s;
+        }
+
+        .backBtn:hover{
+            background:#C49E2B;
+            transform:translateY(-2px);
+        }
+
+        .header{
+            background:linear-gradient(
+                135deg,
+                #5B21B6,
+                #1D4ED8
+            );
+            color:white;
+            padding:48px 25px;
+            border-radius:18px;
+            text-align:center;
+            margin-bottom:36px;
+        }
+
+        .header h1{
+            margin:0 0 16px 0;
+            font-size:40px;
+        }
+
+        .header p{
+            margin:0;
+            font-size:20px;
+            line-height:1.5;
+        }
+
+        .rewardGrid{
+            display:grid;
+            grid-template-columns:
+                repeat(auto-fit, minmax(280px, 1fr));
+            gap:28px;
+        }
+
+        .rewardCard{
+            min-height:190px;
+            background:white;
+            border-radius:16px;
+            padding:32px 26px;
+            text-align:center;
+            box-shadow:0 5px 15px rgba(0,0,0,0.12);
+            cursor:pointer;
+            transition:0.25s;
+            border-top:8px solid #D4AF37;
+            display:flex;
+            flex-direction:column;
+            justify-content:center;
+        }
+
+        .rewardCard:hover{
+            transform:translateY(-6px);
+            box-shadow:0 10px 22px rgba(0,0,0,0.18);
+        }
+
+        .rewardCard h2{
+            color:#5B21B6;
+            margin:0 0 16px 0;
+            font-size:25px;
+        }
+
+        .rewardCard p{
+            color:#4B5563;
+            margin:0;
+            font-size:17px;
+            line-height:1.5;
+        }
+
+        .comingSoon{
+            opacity:0.65;
+            cursor:default;
+        }
+
+        .comingSoon:hover{
+            transform:none;
+        }
+
+        .status{
+            display:inline-block;
+            background:#F3E8FF;
+            color:#6D28D9;
+            padding:7px 13px;
+            border-radius:20px;
+            font-weight:bold;
+            font-size:14px;
+            margin-top:17px;
+        }
+
+        @media(max-width:600px){
+
+            body{
+                padding:20px 18px;
+            }
+
+            .header{
+                padding:38px 20px;
+            }
+
+            .header h1{
+                font-size:31px;
+            }
+
+            .header p{
+                font-size:17px;
+            }
+
+            .rewardGrid{
+                grid-template-columns:1fr;
+                gap:24px;
+            }
+
+            .rewardCard{
+                width:100%;
+                min-height:170px;
+            }
+
+        }
+
+    </style>
+
+</head>
+
+<body>
+
+<div class="pageContainer">
+
+    <button
+        class="backBtn"
+        onclick="location.href='index.html'"
+    >
+        ← Back to Home
+    </button>
+
+    <div class="header">
+
+        <h1>🏆 MDRT Rewards</h1>
+
+        <p>
+            Select an MDRT benefit to check eligibility
+            and calculate your estimated reward.
+        </p>
+
+    </div>
+
+    <div class="rewardGrid">
+
+        <div
+            class="rewardCard"
+            onclick="location.href='mdrt-business-support.html'"
+        >
+
+            <h2>💼 MDRT Business Support</h2>
+
+            <p>
+                Calculate business support based on eligible
+                issued FYP.
+            </p>
+
+        </div>
+
+        <div class="rewardCard comingSoon">
+
+            <h2>✈️ MDRT Skypass</h2>
+
+            <p>
+                Eligibility assessment will be available here.
+            </p>
+
+            <div class="status">
+                Coming Soon
+            </div>
+
+        </div>
+
+        <div class="rewardCard comingSoon">
+
+            <h2>🌍 Zenith Club</h2>
+
+            <p>
+                Check production and persistency requirements.
+            </p>
+
+            <div class="status">
+                Coming Soon
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+</body>
+
+</html>
